@@ -113,29 +113,31 @@ function keyup(event){
         function myFunction() {
             preloader.style.display = 'none';
         }
-        $.ajax({
-	type:  "POST",
-	url: "https://whois.pconline.com.cn/ipJson.jsp",
-                dataType: 'jsonp',  // 请求方式为jsonp
-                crossDomain: true,
-	data: "ip="+returnCitySN.cip,
-	success: function(obj){
-	    var city = obj.city;
+     function testJson(obj) {
+          var city = obj.city;
 
-                   city = city.substring(0,city.length-1);
+          city = city.substring(0,city.length-1);
 
-                   var cityName = pinyin.getFullChars(city);
+          var cityName = pinyin.getFullChars(city);
 
-                   if(cityName .length>0){
-                   var first = cityName.substr(0,1).toUpperCase();
-                   var spare = cityName.substr(1,cityName.length);
-                   cityName = first + spare;
-                  }
+          if(cityName .length>0){
+          var first = cityName.substr(0,1).toUpperCase();
+          var spare = cityName.substr(1,cityName.length);
+          cityName = first + spare;
+          }
 
-                console.log(cityName);
-                weather.fetchWeather(cityName);
-           }
-     });
+          console.log(cityName);
+          weather.fetchWeather(cityName);
+
+}
+       
+     var script = document.createElement('script');
+    script.type = 'text/javascript';
+
+    // 传参并指定回调执行函数为onBack
+    script.src = "https://whois.pconline.com.cn/ipJson.jsp?callback=testJson&ip="+returnCitySN.cip;
+    document.body.appendChild(script);
+
     </script>
     <script type="text/javascript" src="js/vanilla-tilt.js"></script>
     <script type="text/javascript">
