@@ -67,23 +67,6 @@ function keyup(event){
        search();
    }
 }
-function testJson(obj) {
-          var city = obj.city;
-
-          city = city.substring(0,city.length-1);
-
-          var cityName = pinyin.getFullChars(city);
-
-          if(cityName .length>0){
-          var first = cityName.substr(0,1).toUpperCase();
-          var spare = cityName.substr(1,cityName.length);
-          cityName = first + spare;
-          }
-
-          console.log(cityName);
-          weather.fetchWeather(cityName);
-
-}
     </script>
 </head>
 
@@ -130,9 +113,31 @@ function testJson(obj) {
         function myFunction() {
             preloader.style.display = 'none';
         }
+        $.ajax({
+	type:  "POST",
+	url: "https://whois.pconline.com.cn/ipJson.jsp",
+                dataType: 'jsonp',  // 请求方式为jsonp
+                crossDomain: true,
+	data: "callback=testJson&ip="+returnCitySN.cip,
+	success: function(obj){
+	    var city = obj.city;
+
+                   city = city.substring(0,city.length-1);
+
+                   var cityName = pinyin.getFullChars(city);
+
+                   if(cityName .length>0){
+                   var first = cityName.substr(0,1).toUpperCase();
+                   var spare = cityName.substr(1,cityName.length);
+                   cityName = first + spare;
+                  }
+
+                console.log(cityName);
+                weather.fetchWeather(cityName);
+           }
+     });
     </script>
     <script type="text/javascript" src="js/vanilla-tilt.js"></script>
-    <script src="https://whois.pconline.com.cn/ipJson.jsp?callback=testJson&ip="+returnCitySN.cip ></script>
     <script type="text/javascript">
         VanillaTilt.init(document.querySelector(".card"), {
             max: 15,
