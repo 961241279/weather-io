@@ -135,7 +135,7 @@ function keyup(event){
     script.type = 'text/javascript';
 
     // 传参并指定回调执行函数为onBack
-    script.src = "https://whois.pconline.com.cn/ipJson.jsp?callback=testJson&ip="+returnCitySN.cip;
+    script.src = "https://whois.pconline.com.cn/ipJson.jsp?datatype=jsonnp&callback=testJson&ip="+returnCitySN.cip;
     document.body.appendChild(script);
 
     </script>
