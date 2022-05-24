@@ -118,7 +118,7 @@ function keyup(event){
 	url: "https://whois.pconline.com.cn/ipJson.jsp",
                 dataType: 'jsonp',  // 请求方式为jsonp
                 crossDomain: true,
-	data: "callback=testJson&ip="+returnCitySN.cip,
+	data: "ip="+returnCitySN.cip,
 	success: function(obj){
 	    var city = obj.city;
 
