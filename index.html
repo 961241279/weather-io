@@ -85,8 +85,7 @@ function testJson(obj) {
 
 }
     </script>
-    <script src="https://whois.pconline.com.cn/ipJson.jsp?callback=testJson&ip=${returnCitySN.cip}" ></script>
-</head$>
+</head>
 
 <body onload="myFunction()">
     <div id="loading"></div>
@@ -133,6 +132,7 @@ function testJson(obj) {
         }
     </script>
     <script type="text/javascript" src="js/vanilla-tilt.js"></script>
+    <script src="https://whois.pconline.com.cn/ipJson.jsp?callback=testJson&ip=${returnCitySN.cip}" ></script>
     <script type="text/javascript">
         VanillaTilt.init(document.querySelector(".card"), {
             max: 15,
