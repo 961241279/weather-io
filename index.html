@@ -114,6 +114,7 @@ function keyup(event){
             preloader.style.display = 'none';
         }
      function localWeather(obj) {
+          console.log(obj);
           var city = obj.city;
 
           city = city.substring(0,city.length-1);
@@ -131,15 +132,11 @@ function keyup(event){
 
 }
        
-     $.ajax({
-    url: 'https://whois.pconline.com.cn/ipJson.jsp',
-    type: 'get',
-    dataType: 'jsonp',  // 请求方式为jsonp
-    jsonpCallback: "localWeather",  // 自定义回调函数名
-    data: {
-	ip : returnCitySN.cip,
-}
-});
+  var url = "https://restapi.amap.com/v3/ip?callback=localWeather&key=" + "6d9c7e2448f6b3532d080f3a6cedad11" + "&ip=" + returnCitySN.cip;
+  var jsapi = document.createElement('script');
+  jsapi.charset = 'utf-8';
+  jsapi.src = url;
+  document.head.appendChild(jsapi);
 
     </script>
     <script type="text/javascript" src="js/vanilla-tilt.js"></script>
