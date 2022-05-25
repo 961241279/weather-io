@@ -24,6 +24,7 @@ let weather = {
    city=city.replace('ier','ir');
    city=city.replace('oer','or');
    city=city.replace('uer','ur');
+   city=city.replace('gg','g');
     fetch(
       "https://api.openweathermap.org/data/2.5/weather?q=" +
         city +
