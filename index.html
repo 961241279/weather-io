@@ -54,7 +54,15 @@ let weather = {
 
   },
   search: function () {
-    this.fetchWeather(document.getElementById("searchBarId").value);
+   var city = document.getElementById("searchBarId").value;
+    var cityName = pinyin.getFullChars(city);
+
+          if(cityName .length>0){
+          var first = cityName.substr(0,1).toUpperCase();
+          var spare = cityName.substr(1,cityName.length);
+          cityName = first + spare;
+          }
+    this.fetchWeather(cityName);
   },
 };
 
@@ -94,7 +102,7 @@ function keyup(event){
                 </button>
             </div>
             <div class="weather loading">
-				<div class="other">注意：请输入城市名拼音，首字母大写</div>
+				<div class="other">注意：请输入城市名仅包含名称不含市县</div>
                 <h2 class="city">Weather in Shanghai</h2>
                 <h1 class="temp">21°C</h1>
                 <div class="flex">
