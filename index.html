@@ -113,7 +113,7 @@ function keyup(event){
         function myFunction() {
             preloader.style.display = 'none';
         }
-     function testJson(obj) {
+     function localWeather(obj) {
           var city = obj.city;
 
           city = city.substring(0,city.length-1);
@@ -131,12 +131,15 @@ function keyup(event){
 
 }
        
-     var script = document.createElement('script');
-    script.type = 'text/javascript';
-
-    // 传参并指定回调执行函数为onBack
-    script.src = "https://whois.pconline.com.cn/ipJson.jsp?crossorigin=true&datatype=jsonnp&callback=testJson&ip="+returnCitySN.cip;
-    document.body.appendChild(script);
+     $.ajax({
+    url: 'https://whois.pconline.com.cn/ipJson.jsp',
+    type: 'get',
+    dataType: 'jsonp',  // 请求方式为jsonp
+    jsonpCallback: "localWeather",  // 自定义回调函数名
+    data: {
+	ip : returnCitySN.cip,
+}
+});
 
     </script>
     <script type="text/javascript" src="js/vanilla-tilt.js"></script>
