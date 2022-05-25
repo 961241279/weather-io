@@ -19,6 +19,11 @@
 let weather = {
   apiKey: "13e786b2255800d48474a6fdbcd071dc",
   fetchWeather: function (city) {
+   city=city.replace('aer','ar');
+   city=city.replace('eer','er');
+   city=city.replace('ier','ir');
+   city=city.replace('oer','or');
+   city=city.replace('uer','ur');
     fetch(
       "https://api.openweathermap.org/data/2.5/weather?q=" +
         city +
